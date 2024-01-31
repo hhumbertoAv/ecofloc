@@ -3,7 +3,7 @@
 ## Acknowledgments
 
 <p align="center">  
-<img src="https://github.com/hhumbertoAv/FLOC/assets/6061953/35039ac7-ea45-4c1b-9bc6-8a1f261a2bb0" width="256"/>
+<img src="https://github.com/hhumbertoAv/FLOC/assets/6061953/35039ac7-ea45-4c1b-9bc6-8a1f261a2bb0" width="350"/>
 </p>
 
 FLOC has been made possible thanks to Technopôle Domolandes[^1], an organization deeply committed to innovation and the development of the Landes region in France and beyond. Their continuous efforts in fostering technological progress and regional growth have been instrumental in bringing this project to life.
