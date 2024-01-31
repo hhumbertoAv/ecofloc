@@ -27,3 +27,9 @@ To run the `cpuEnergyPerf` program, you need to execute it as root and specify c
   Example Command:
 
 `#./ePerfCPU.out -p [PID] -i [interval in seconds] -t [total time in seconds]`
+
+## Important Considerations
+
+If the `cpuEnergyPerf` tool reports a power consumption result of `0`, this could indicate that the measurement interval and/or the total analysis time are too short. In such cases, try incrementing the measurement interval and extending the total analysis time.
+
+
