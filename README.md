@@ -2,7 +2,11 @@
 
 ## Acknowledgments
 
-FLOC has been made possible thanks to Technopôle Domolandes, an organization deeply committed to innovation and the development of the Landes region in France and beyond. Their continuous efforts in fostering technological progress and regional growth have been instrumental in bringing this project to life.
+<p align="center">  
+<img src="https://github.com/hhumbertoAv/FLOC/assets/6061953/35039ac7-ea45-4c1b-9bc6-8a1f261a2bb0" width="256"/>
+</p>
+
+FLOC has been made possible thanks to Technopôle Domolandes[^1], an organization deeply committed to innovation and the development of the Landes region in France and beyond. Their continuous efforts in fostering technological progress and regional growth have been instrumental in bringing this project to life.
 
 ## Description
 FLOC is a comprehensive and highly versatile tool, developed by the R&D laboratory of Têchnopole Domolandes[^1], designed to measure the energy consumption of applications in GNU/Linux environments. The core philosophy of FLOC is to enable users and developers to track energy usage across various software components using a single tool, leveraging existing libraries like RAPL[^2] or power equations. This first version comprises four applications, each dedicated to finding the equations-based power and energy consumption of four hardware components: CPU, RAM, hard drives, and network cards.
