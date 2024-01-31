@@ -21,7 +21,7 @@ To run the `ePerfNIC.sh` script, specify the Process ID (PID) of the process to 
 
   Example Command:
 
-`./ePerfNIC.sh -p [PID] -t [interval in seconds]`
+`/bin/bash ePerfNIC.sh -p [PID] -t [interval in seconds]`
 
 ## Important Considerations
 
