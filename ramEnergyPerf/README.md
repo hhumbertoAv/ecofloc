@@ -1,5 +1,19 @@
 # RAM Energy Performance Tool (`ePerfRAM.sh`) Installation and Usage
 
+## System Requirements
+
+Before using `ePerfRAM.sh`, make sure to have `iconv` and `perf` installed on your system:
+
+- **For Arch-based distributions:**
+  - Install as root `iconv` (usually included with `glibc`) and `perf` by running:
+    - `# pacman -Syu glibc`
+    - `# pacman -S linux-tools` (or `linux-zen-tools` for the Zen kernel, adjust accordingly for your kernel)
+
+- **For Debian-based distributions:**
+  - `iconv` should be pre-installed with the `libc-bin` package. Install `perf` by running:
+    - `# apt-get update`
+    - `# apt-get install linux-tools-common linux-tools-$(uname -r)`
+
 ## Installation
 
 To use the `ePerfRAM.sh` script on your computer, follow these steps:
