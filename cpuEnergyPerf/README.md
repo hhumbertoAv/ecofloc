@@ -1,5 +1,16 @@
 # CPU Energy Performance Tool (`cpuEnergyPerf`) Installation and Usage
 
+## System Requirements
+
+Before installing `cpuEnergyPerf`, ensure that you have `rdmsr` installed on your system. This tool is required for reading model-specific registers (MSR) necessary for energy measurement.
+
+- **For Arch-based distributions:**
+  - Run as root `# pacman -S msr-tools`
+
+- **For Debian-based distributions:**
+  - Run as root `# apt-get install msr-tools`
+
+    
 ## Installation
 
 To install the `cpuEnergyPerf` application on your computer, follow these steps:
@@ -11,16 +22,6 @@ To install the `cpuEnergyPerf` application on your computer, follow these steps:
 
 2. **Uninstallation:**
    - To uninstall, run `make clean` in the same directory. This will remove compiled binaries and clean up the directory.
-
-## System Requirements
-
-Before installing `cpuEnergyPerf`, ensure that you have `rdmsr` installed on your system. This tool is required for reading model-specific registers (MSR) necessary for energy measurement.
-
-- **For Arch-based distributions:**
-  - Run as root `# pacman -S msr-tools`
-
-- **For Debian-based distributions:**
-  - Run as root `# apt-get install msr-tools`
 
 ## Usage
 
