@@ -29,10 +29,13 @@ FLOC includes a set of pre-defined mathematical formulas tailored for the four d
 
 ## Technical Specifications
 
-### System Requirements
-FLOC requires an Arch-based or Debian-based GNU/Linux distribution with the Linux kernel version 5.12 or higher. 
+As we mentioned, this initial release of `floc` features four distinct applications, targeting the measurement of power and energy consumption across CPUs, RAM, storage devices, and network interface cards. Each application is in its own folder, where you'll find both the source code and configuration files. This setup not only facilitates easy exploration and customization but also facilitates understanding. While `floc` provides a unified interface to execute all tools collectively, users are still able to delve into each application's specific folder to explore its code, access comprehensive documentation, and make any desired modifications.
 
-### Inputs
+
+### General System Requirements
+FLOC requires an Arch-based or Debian-based GNU/Linux distribution with the Linux kernel version 5.12 or higher. Please, refer to each application folder to explore applications' specific requirements. 
+
+### General Inputs
 <p align="justify">
 FLOC operates with the following primary inputs:
 
@@ -40,7 +43,7 @@ FLOC operates with the following primary inputs:
 2. **Total Analysis Time:** Sets the duration for energy and power value calculations.
 3. **Measurement Interval:** Determines the interval at which FLOC takes load and power measurements, impacting the allocated CPU time for the tool.
 
-The specification of these parameters is specified in each application’s folder
+More detailed specification of these parameters is specified in each application’s folder
 </p>
 
 ### Outputs
@@ -51,6 +54,26 @@ The outputs of each application of FLOC after analyzing a process are as follows
 - **Average Power (in Watts):** The mean power consumption over the set analysis period.
 - **Energy Consumption (in Joules):** Total energy used during the total analysis time.
 </p>
+
+### Compilation and Execution
+
+To compile and set up FLOC, follow these steps please:
+
+1. **Compilation:**
+   - Open your terminal.
+   - Navigate to the root directory of the FLOC project.
+   - Execute the command `make` to compile all components and prepare the `floc` executable.
+
+2. **Running FLOC:**
+   - To use floc and specify which application to execute, run:
+     ```
+     ./floc --cpu-p [PID] -i [interval] -t [duration]
+     ./floc --sd-p [PID] -i [interval] -t [duration]
+     ./floc --ram -p [PID] -t [interval]
+     ./floc --nic -p [PID] -t [interval]
+     ```
+   - Replace `[PID]`, `[interval]`, and `[duration]` with your desired values.
+
 
 
 ## References
