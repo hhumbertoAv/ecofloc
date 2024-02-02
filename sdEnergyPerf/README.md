@@ -31,5 +31,7 @@ To run the `ePerfSD` program, you need to execute it as root and specify certain
   
 ## Important Considerations
 
-If the `ePerfSD` tool reports a power consumption result of `0`, this could indicate that the measurement interval and/or the total analysis time are too short. In such cases, try incrementing the measurement interval and extending the total analysis time.
+- If the `ePerfSD` tool reports a power consumption result of `0`, this could indicate that the measurement interval and/or the total analysis time are too short. In such cases, try incrementing the measurement interval and extending the total analysis time.
+
+- If you encounter an error related to "/proc/<PID>/io", ensure you are running the application on a real machine and not in a virtual environment.
 
