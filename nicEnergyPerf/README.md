@@ -1,5 +1,19 @@
 # Network Interface Controller Energy Performance Tool (`ePerfNIC.sh`) Installation and Usage
 
+## System Requirements
+
+Before using `ePerfNIC.sh`, ensure you have `nethogs` installed on your system, version greater than 0.8.7:
+
+- **For Arch-based distributions:**
+  - Install `nethogs` by running as root:
+    - `sudo pacman -S nethogs`
+
+- **For Debian-based distributions:**
+  - First, update your package list as root:
+    - `# apt-get update`
+  - Install as root `nethogs` (ensure you get a version > 0.8.7, you might need to check if the latest version is available in your distribution's repository or consider installing from source if the version is too old):
+    - `# apt-get install nethogs`
+    
 ## Installation
 
 To use the `ePerfNIC.sh` script on your computer, follow these steps:
