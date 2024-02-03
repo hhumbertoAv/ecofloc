@@ -67,8 +67,8 @@ To compile and set up FLOC, follow these steps please:
 2. **Running FLOC:**
    - To use floc and specify which application to execute, run:
      ```
-     ./floc --cpu-p [PID] -i [interval] -t [duration]
-     ./floc --sd-p [PID] -i [interval] -t [duration]
+     ./floc --cpu -p [PID] -i [interval] -t [duration]
+     ./floc --sd -p [PID] -i [interval] -t [duration]
      ./floc --ram -p [PID] -t [interval]
      ./floc --nic -p [PID] -t [interval]
      ```
