@@ -23,4 +23,4 @@ floc:
 clean:
 	$(MAKE) -C cpuEnergyPerf clean
 	$(MAKE) -C sdEnergyPerf clean
-	rm -f ePerfCPU.out ePerfSD.out sdFeatures.conf ePerfRAM.sh ePerfNIC.sh floc
+	rm  -f ePerfCPU.out ePerfSD.out sdFeatures.conf ePerfRAM.sh ePerfNIC.sh floc
