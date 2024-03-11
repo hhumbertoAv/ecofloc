@@ -39,6 +39,9 @@ int main(int argc, char *argv[]) {
         }
         app = (strcmp(argv[1], "--cpu") == 0) ? "./ePerfCPU.out" : "./ePerfSD.out";
         args[0] = app;
+        printf("BETOOOO: %s\n", args[0]);
+        printf("Current working directory: %s\n", getenv("PWD"));
+
         args[1] = argv[2]; // "-p"
         args[2] = argv[3]; // PID
         args[3] = argv[4]; // "-i"

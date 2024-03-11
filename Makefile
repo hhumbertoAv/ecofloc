@@ -28,9 +28,13 @@ install:
 	cp ramEnergyPerf/ePerfRAM.sh /opt/floc/
 	cp nicEnergyPerf/ePerfNIC.sh /opt/floc/
 	cp floc /opt/floc/
-	chmod +x /opt/floc/ePerfRAM.sh /opt/floc/ePerfNIC.sh /opt/floc/floc
+	chmod +x /opt/floc/ePerfCPU.out /opt/floc/ePerfSD.out /opt/floc/ePerfRAM.sh /opt/floc/ePerfNIC.sh /opt/floc/floc
+	ln -sf /opt/floc/ePerfCPU.out /usr/local/bin/ePerfCPU
+	ln -sf /opt/floc/ePerfSD.out /usr/local/bin/ePerfSD
+	ln -sf /opt/floc/ePerfRAM.sh /usr/local/bin/ePerfRAM
+	ln -sf /opt/floc/ePerfNIC.sh /usr/local/bin/ePerfNIC
 	ln -sf /opt/floc/floc /usr/local/bin/floc
 
 uninstall:
 	rm -rf /opt/floc
-	rm -f /usr/local/bin/floc
+	rm -f /usr/local/bin/ePerfCPU /usr/local/bin/ePerfSD /usr/local/bin/ePerfRAM /usr/local/bin/ePerfNIC /usr/local/bin/floc
