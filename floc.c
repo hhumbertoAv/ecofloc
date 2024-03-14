@@ -23,6 +23,7 @@ under the License.
 #include <unistd.h>
 
 int main(int argc, char *argv[]) {
+
     if (argc < 2) {
         printf("Usage: %s --cpu|--sd|--ram|--nic [options]\n", argv[0]);
         return 1;
@@ -37,11 +38,11 @@ int main(int argc, char *argv[]) {
             printf("Usage for CPU/SD: %s %s -p [PID] -i [interval] -t [duration]\n", argv[0], argv[1]);
             return 1;
         }
-        app = (strcmp(argv[1], "--cpu") == 0) ? "./ePerfCPU.out" : "./ePerfSD.out";
-        args[0] = app;
-        printf("BETOOOO: %s\n", args[0]);
-        printf("Current working directory: %s\n", getenv("PWD"));
 
+        //execvp not working for PATH and relative paths
+
+        app = (strcmp(argv[1], "--cpu") == 0) ? "/usr/local/bin/ePerfCPU" : "./ePerfSD.out";
+        args[0] = app;
         args[1] = argv[2]; // "-p"
         args[2] = argv[3]; // PID
         args[3] = argv[4]; // "-i"
