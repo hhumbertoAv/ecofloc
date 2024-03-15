@@ -35,12 +35,12 @@ under the License.
 // -> VALUES from the CPU datasheet 
 ///////////////////////////////////////////////////////////////////////////////////
 
- double get_cpu_capacitance() {
+ /* double get_cpu_capacitance() {
         
     char buf[256];
-    double cpu_freq_tdp;
-    double cpu_tdp = 28.0;
-    double cpu_voltage_tdp = 1.5;
+    double cpu_freq_tdp; //FROM OS FILE
+    double cpu_tdp = 28.0; //FROM DATASHEET
+    double cpu_voltage_tdp = 1.5; //FROM DATASHEET
     double cpu_capacitance;
 
     // Open and read the base_frequency file
@@ -57,6 +57,47 @@ under the License.
     fclose(freq_file);
 
     // Calculate cpu_capacitance using formula in the thesis
+    cpu_capacitance = (0.7 * cpu_tdp) / (cpu_freq_tdp * cpu_voltage_tdp * cpu_voltage_tdp);
+
+    return cpu_capacitance;
+}*/
+
+
+double get_cpu_capacitance() {
+    char buf[1024];
+    double cpu_freq_tdp; // Frequency in MHz
+    double cpu_tdp = 28.0; //FROM DATASHEET
+    double cpu_voltage_tdp = 1.5; //FROM DATASHEET
+    double cpu_capacitance;
+    FILE* cpuinfo_file = fopen("/proc/cpuinfo", "r");
+    if (cpuinfo_file == NULL) {
+        perror("Error opening /proc/cpuinfo");
+        return -1.0;
+    }
+
+    while (fgets(buf, sizeof(buf), cpuinfo_file) != NULL) {
+        // Look for the line starting with "model name"
+        if (strncmp(buf, "model name", 10) == 0) {
+            char* frequency_str = strstr(buf, "@");
+            if (frequency_str != NULL) {
+                // Increment pointer to skip the "@" symbol
+                frequency_str++;
+                // Convert frequency string to double (assuming GHz)
+                cpu_freq_tdp = strtod(frequency_str, NULL) * 1000; // Convert GHz to MHz
+                printf("TDPPPPPPPPPPPPP %.2f MHz\n", cpu_freq_tdp);
+
+                break;
+            }
+        }
+    }
+    fclose(cpuinfo_file);
+
+    if (cpu_freq_tdp <= 0) {
+        fprintf(stderr, "Failed to parse CPU frequency from /proc/cpuinfo\n");
+        return -1.0;
+    }
+
+    // Calculate cpu_capacitance using the formula
     cpu_capacitance = (0.7 * cpu_tdp) / (cpu_freq_tdp * cpu_voltage_tdp * cpu_voltage_tdp);
 
     return cpu_capacitance;
