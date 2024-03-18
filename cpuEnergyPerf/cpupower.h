@@ -84,8 +84,6 @@ double get_cpu_capacitance() {
                 frequency_str++;
                 // Convert frequency string to double (assuming GHz)
                 cpu_freq_tdp = strtod(frequency_str, NULL) * 1000; // Convert GHz to MHz
-                printf("TDPPPPPPPPPPPPP %.2f MHz\n", cpu_freq_tdp);
-
                 break;
             }
         }

@@ -25,14 +25,14 @@ lic
 # Script Name: ePerfRAM.sh
 # Description: This script calculates a PID's RAM power consumption.
 # From variables: CPU memory write and read operations
-# Usage: ePerfRAM.sh -p PID -t windowTime millisecond
+# Usage: ePerfRAM.sh -p PID -t timeout millisecond
 # Note: The perf events are different for each CPU architecture
-# Note: A safe windowTime is 100 msecs, otherwise empty values may exist
+# Note: A safe timeout is 100 msecs, otherwise empty values may exist
 ################################################################################
 
 
 pid=0
-windowTime=0
+timeout=0
 
 ram_energy=0
 ram_power_AVG=0
@@ -42,7 +42,7 @@ getInput()
   while getopts "t:p:" opt; do
     case ${opt} in
       t )
-        windowTime=$OPTARG
+        timeout=$(($OPTARG * 1000)) 
         ;;
       p )
         pid=$OPTARG
@@ -62,8 +62,8 @@ getInput()
 
 verifyInput()
 {
-  if [ $windowTime -lt 100 ]; then
-    echo "I need a bigger windowTime :(..."
+  if [ $timeout -lt 100 ]; then
+    echo "I need a bigger timeout :(..."
     exit
   fi
   if [ ! -e "/proc/$1/stat" ]; then #If the process does not exist -> exit
@@ -81,10 +81,8 @@ getRAMCons()
 
 
     #to replace
-    #rawResults=$(perf stat -e mem-stores,mem-loads -p $pid --timeout=$windowTime 2>&1)
-    rawResults=$(perf stat -e mem-stores,mem-loads -p $pid  2>&1)
-
-
+    rawResults=$(perf stat -e mem-stores,mem-loads -p $pid --timeout=$timeout 2>&1)
+    #rawResults=$(perf stat -e mem-stores,mem-loads -p $pid  2>&1)
 
 
     #Replace the "," by a "."
@@ -103,7 +101,7 @@ getRAMCons()
 
     #The Background energy consumption (milliseconds)
     #TODO verify if this is related to a process
-    ram_bk=$(echo "$windowTime * 0.001 * 1.56" | bc 2>/dev/null) 
+    ram_bk=$(echo "$timeout * 0.001 * 1.56" | bc 2>/dev/null) 
 
     #The active energy consumption
     ram_act=$(echo "scale=10; ($mem_loads * 6.6) + ($mem_stores * 8.7)" \
@@ -113,7 +111,7 @@ getRAMCons()
     #The RAM energy and power consumption
     #ram_energy=$(echo "scale=10; $ram_bk + $ram_act" | bc 2>/dev/null)
     ram_energy=$(echo "scale=10; $ram_act" | bc 2>/dev/null)
-    ram_power_AVG=$(echo "scale=10; $ram_energy / ($windowTime*0.001) " | bc 2>/dev/null)
+    ram_power_AVG=$(echo "scale=10; $ram_energy / ($timeout*0.001) " | bc 2>/dev/null)
 
 }
 

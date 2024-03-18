@@ -1,4 +1,4 @@
-all: cpu sd ram nic floc
+all: clean uninstall cpu sd ram nic floc install
 
 cpu:
 	$(MAKE) -C cpuEnergyPerf

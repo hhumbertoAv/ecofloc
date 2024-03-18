@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
             printf("Usage for RAM/NIC: %s %s -p [PID] -t [interval]\n", argv[0], argv[1]);
             return 1;
         }
-        app = (strcmp(argv[1], "--ram") == 0) ? "ePerfRAM.sh" : "ePerfNIC";
+        app = (strcmp(argv[1], "--ram") == 0) ? "ePerfRAM" : "ePerfNIC";
         args[0] = app;
         args[1] = argv[2]; // "-p"
         args[2] = argv[3]; // PID

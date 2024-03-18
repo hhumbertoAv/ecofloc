@@ -182,7 +182,7 @@ int main(int argc, char **argv) {
             total_time_s = atof(optarg);
             break;
         default: /* '?' */
-            fprintf(stderr, "Usage: %s -p PID -i INTERVAL_MILLISECONDS -t TIMEOUT \n", argv[0]);
+            fprintf(stderr, "Usage: %s -p PID -i INTERVAL_MILLISECONDS -t TIMEOUT_SECONDS \n", argv[0]);
             exit(EXIT_FAILURE);
         }
     }
