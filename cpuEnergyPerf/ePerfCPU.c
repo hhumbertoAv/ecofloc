@@ -111,7 +111,7 @@ void cpu_power(int pid, double interval, double timeout) {
 
 
 
-        //Let's check children processes apfer
+        //Let's check children processes after
        //*****************************************************************
          CPUPowerAndTime results; //struct defined in cpupower.h
 
@@ -154,7 +154,7 @@ void cpu_power(int pid, double interval, double timeout) {
 
 
 
-        printf("PID %d\ntotal W %f\ntotal T %f\ntotal E %f\n"
+        printf("PID: %d\nAVG_CPU_POWER (W): %f\nCPU_MEASURE_DURATION (S): %f\nENERGY_CPU (J): %f\n"
           ,pid,total_results.power,total_results.time,total_results.energy);
 
 }

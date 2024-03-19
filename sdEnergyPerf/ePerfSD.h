@@ -29,11 +29,12 @@ under the License.
 #define READ_BYTES_KEY "read_bytes:"
 #define WRITE_BYTES_KEY "write_bytes:"
 
+
 //Important ref: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/filesystems/proc.rst?id=HEAD#l1305
 
 
 ////////////////////////////////////////////////////////////////////////////////////
-// CONF SECTION -> Depends on sdFeatures.txt (I/O watts and max bytes per second) 
+// CONFIG SECTION -> Depends on sdFeatures.txt (I/O watts and max bytes per second) 
 ///////////////////////////////////////////////////////////////////////////////////
 
 
@@ -140,34 +141,29 @@ typedef struct {
 
 void calculate_power(int pid, int interval_milliseconds, double total_time,  StorageValues* s_values) {
 
-    //This function calculate the power consumption from the transfer rate
-    double accumulated_time = 0.0;
-    
-    float total_power=-1;
-    long read_rate,write_rate;
+    time_t start, end;
+    start = time(NULL);
 
-    int iteration=0;
+    PowerValues total_power_values = {0};
+    long long counter = 0;
+    long read_rate, write_rate;
 
-
-    // Read the initial read and write bytes from /proc/<pid>/io
     long initial_read_bytes = get_io_bytes(pid, READ_BYTES_KEY);
     long initial_write_bytes = get_io_bytes(pid, WRITE_BYTES_KEY);
-
-    //Create a timespec struct to represent the interval at which we're collecting data (nanosleep req.)
-    struct timespec interval = {interval_milliseconds / 1000, (interval_milliseconds % 1000) * 1000000};
-
-    // Record the start time
-    struct timeval start, end;
-    gettimeofday(&start, NULL);
-
-    // Run the loop for total_time_seconds
-    //TODO -> See if the logic of calculete the iterations number is better -> see CPU.c logic
     
 
      do {
-            // Sleep for the given interval
+
+         if (kill(pid, 0) == -1) {
+            printf("Process %d was killed or does not exist\n", pid);
+            break;
+        }
+   
+        // nanosleep receives 
+        struct timespec interval = {interval_milliseconds / 1000, (interval_milliseconds % 1000) * 1000000};
         nanosleep(&interval, NULL); 
         // After the sleep, read the final read and write bytes from /proc/<pid>/io
+  
         long final_read_bytes = get_io_bytes(pid, READ_BYTES_KEY);
         long final_write_bytes = get_io_bytes(pid, WRITE_BYTES_KEY);
 
@@ -178,35 +174,26 @@ void calculate_power(int pid, int interval_milliseconds, double total_time,  Sto
         read_rate = (long) ((final_read_bytes - initial_read_bytes) / interval_seconds);
         write_rate = (long) ((final_write_bytes - initial_write_bytes) / interval_seconds);
 
-        // If verbose mode is on, or if read and write rates are not 0, print the read and write rates
-        if (( read_rate != 0 || write_rate != 0)) {
+        PowerValues p_values = power_formula(s_values, read_rate, write_rate);
 
-            PowerValues p_values;
-            power_formula(s_values,read_rate,write_rate);
-            p_values=power_formula(s_values, read_rate, write_rate); 
-            total_power = p_values.total_power;
-            
+        total_power_values.total_power += p_values.total_power;
+        counter++;
 
-            //printf("%s rate: %ld bytes/sec\n", READ_BYTES_KEY, read_rate);
-            //printf("%s rate: %ld bytes/sec\n", WRITE_BYTES_KEY, write_rate);
-            //printf("Total Power = %f\n", total_power);
-        }
-
-
-        //A next step in the iteration
         initial_read_bytes = final_read_bytes;
         initial_write_bytes = final_write_bytes;
 
+        end = time(NULL);
 
-        gettimeofday(&end, NULL);
-        double iteration_time = ((end.tv_sec - start.tv_sec) * 1000000 + end.tv_usec - start.tv_usec) / 1000000.0;
-        accumulated_time += iteration_time;
+    } while (total_time < 0 || difftime(end, start) < total_time);
 
-    } while ((total_time < 0) || (accumulated_time <= total_time));
-
-
-    
+    if (counter > 0) {
+        double avg_power = total_power_values.total_power / counter;
+        double total_energy = avg_power * difftime(end, start);
+        printf("PID: %d\nAVG_SD_POWER (W): %f\nSD_MEASURE_DURATION (S): %f\nENERGY_SD (J): %f\n",
+               pid, avg_power, difftime(end, start), total_energy);
+    }
 }
+
 
 
 
@@ -219,10 +206,10 @@ void calculate_power(int pid, int interval_milliseconds, double total_time,  Sto
 
 double calculate_sd_power(int pid, int interval_milliseconds, double total_time_seconds){ 
     
-    const char* filename = "sdFeatures.conf";
+    //const char* filename = "sdFeatures.conf";
     StorageValues s_values;
     
-    extract_SD_features(filename, &s_values); 
+    extract_SD_features(DEFAULT_CONFIG_PATH, &s_values); 
     //printf("write_power = %f, read_power = %f, write_max_rate = %ld, read_max_rate = %ld\n", 
       //     s_values.write_power, s_values.read_power, s_values.write_max_rate, s_values.read_max_rate);
 
@@ -233,4 +220,6 @@ double calculate_sd_power(int pid, int interval_milliseconds, double total_time_
 
 
 }
+
+
 

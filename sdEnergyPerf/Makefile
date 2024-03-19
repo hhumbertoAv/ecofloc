@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall
+CFLAGS=-Wall -DDEFAULT_CONFIG_PATH=\"/opt/floc/sdFeatures.conf\"
 
 # define your targets
 TARGET_SD=ePerfSD.out
