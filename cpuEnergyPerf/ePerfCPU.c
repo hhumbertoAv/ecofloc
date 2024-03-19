@@ -154,7 +154,7 @@ void cpu_power(int pid, double interval, double timeout) {
 
 
 
-        printf("PID: %d\nAVG_CPU_POWER (W): %f\nCPU_MEASURE_DURATION (S): %f\nENERGY_CPU (J): %f\n"
+        printf("PID: %d\nCPU_MEASURE_DURATION (S): %f\nAVG_CPU_POWER (W): %f\nENERGY_CPU (J): %f\n"
           ,pid,total_results.power,total_results.time,total_results.energy);
 
 }

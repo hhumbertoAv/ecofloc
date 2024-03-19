@@ -123,12 +123,12 @@ verifyPrintOutput()
      [[ ! -z $ram_power_AVG ]] && \
      [[ $ram_power_AVG =~ ^[0-9]*([.][0-9]+)?$ ]]; then
 
-        echo PID : $pid 
-        echo RAM_MEASURE_DURATION (S) : $timeout
-        echo AVG_RAM_POWER (W) : $ram_power_AVG
-        echo ENERGY_RAM (J) : $ram_energy
+        echo "PID : $pid" 
+        echo "RAM_MEASURE_DURATION (S) : $timeout"
+        echo "AVG_RAM_POWER (W) : $ram_power_AVG"
+        echo "ENERGY_RAM (J) : $ram_energy"
   else
-        echo error somewhere
+        echo "error somewhere"
     fi
 
 }
