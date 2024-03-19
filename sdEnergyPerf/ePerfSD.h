@@ -189,7 +189,7 @@ void calculate_power(int pid, int interval_milliseconds, double total_time,  Sto
     if (counter > 0) {
         double avg_power = total_power_values.total_power / counter;
         double total_energy = avg_power * difftime(end, start);
-        printf("PID: %d\nAVG_SD_POWER (W): %f\nSD_MEASURE_DURATION (S): %f\nENERGY_SD (J): %f\n",
+        printf("PID: %d\nSD_MEASURE_DURATION (S): %f\nAVG_SD_POWER (W): %f\nENERGY_SD (J): %f\n",
                pid, avg_power, difftime(end, start), total_energy);
     }
 }
