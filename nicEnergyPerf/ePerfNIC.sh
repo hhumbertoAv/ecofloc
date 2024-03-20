@@ -41,9 +41,11 @@ lic
 #...we can custom it depending on the kernel driver for further optimizations
 ################################################################################
 
+#TODO -> insert the interval logic
+
 
 pid=0
-windowTime=0
+timeout=0
 
 nic_energy=0
 nic_power_AVG=0
@@ -53,7 +55,7 @@ getInput()
   while getopts "t:p:" opt; do
     case ${opt} in
       t )
-        windowTime=$OPTARG
+        timeout=$OPTARG 
         ;;
       p )
         pid=$OPTARG
@@ -70,13 +72,15 @@ getInput()
   done
 }
 
+
+
 verifyInput()
 {
 
-  if [ $windowTime -lt 100 ]; then
-    echo "I need a bigger windowTime :(..."
-    exit
-  fi
+  #if [ $timeout -lt 100 ]; then    -> this for the interval 
+  #  echo "I need a bigger windowTime :(..."
+  #   exit
+  # fi
   if [ ! -e "/proc/$1/stat" ]; then #If the process does not exist -> exit
     echo "Non-existent PID"
     exit
@@ -91,16 +95,19 @@ count=0
 uplCount=0
 dlCount=0 
 
+
 while IFS=' ' read -r upload download; do
 
     uplCount=$(echo "$uplCount + $upload" | bc)
     dlCount=$(echo "$dlCount + $download" | bc)
     count=$(echo "$count + 1" | bc) 
 
+
 # the last to words of nethogs output are upl and downl rates. STDBUFF is for disable buffering
-done < <(timeout $(echo "$windowTime * 0.001" | bc) nethogs wlo1 -t -P $pid -v 0 -d 0.1 | \
+done < <(timeout $timeout nethogs wlo1 -t -P $pid -v 0 -d 0.1 | \
       stdbuf -i0 -o0 -e0 grep $pid | stdbuf -oL awk '{print $(NF-1),$NF}')
       #nethogs with steps of 100 msecs
+
 
 
 upload_rate_avg=$(echo "scale=10; $uplCount / $count" | bc)
@@ -118,7 +125,7 @@ upload_power=$(echo "scale=10; $max_upload_power*($upload_rate_avg / $max_upload
 download_power=$(echo "scale=10; $max_download_power*($download_rate_avg / $max_download_rate)" | bc)
 
 nic_power_AVG=$(echo "scale=10; $upload_power + $download_power" | bc)
-nic_energy=$(echo "scale=10; $nic_power_AVG*$windowTime*0.001" | bc)
+nic_energy=$(echo "scale=10; $nic_power_AVG*$timeout*0.001" | bc)
 
 
 }
@@ -131,8 +138,10 @@ verifyPrintOutput()
      [[ ! -z $nic_power_AVG ]] && \
      [[ $nic_power_AVG =~ ^[0-9]*([.][0-9]+)?$ ]]; then
 
-        echo nic_energy_J: $nic_energy
-        echo nic_avgPower_W: $nic_power_AVG
+        echo "PID : $pid" 
+        echo "NIC_MEASURE_DURATION (S) : $timeout"
+        echo "AVG_NIC_POWER (W) : $nic_power_AVG"
+        echo "ENERGY_NIC (J) : $nic_energy" 
   else
         echo error somewhere
     fi
