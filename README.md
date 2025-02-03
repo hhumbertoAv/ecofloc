@@ -54,7 +54,7 @@ To collect hardware metrics, install the following packages:
 - **RAM:** `glibc` (for `iconv`) and `perf`  
 - **NIC:** `nethogs` **≥ 0.8.7**  
 
-```sh
+```bash  
 # Arch-based distributions
 pacman -S msr-tools glibc linux-tools nethogs nvidia-smi  # Use 'linux-zen-tools' instead if running the Zen kernel  
 
@@ -87,7 +87,7 @@ apt-get install msr-tools libc-bin linux-tools-common linux-tools-$(uname -r) ne
 
 To install **EcoFloc**, run the following command as root:  
 
-```sh
+```bash  
 /bin/bash ecofloc_installer.sh  # Requires Python 3  
 ```
 
@@ -97,28 +97,31 @@ At the end of the installation, a summary will display any potential issues. If 
 
 1. Navigate to the project root  
 
-```sh
+```bash  
 cd /path/to/ecofloc  
 ```
 
 2. Clean previous builds  
 
-```sh
+```bash  
 make clean  
 ```
 
 3. Compile and install  
 
-```sh
+```bash  
 make  
 make install  
 ```
 
 4. Uninstall if needed  
 
-```sh
+```bash  
 make uninstall  
 ```
+
+
+
 
 
 ## Running EcoFloc  
@@ -129,7 +132,7 @@ To use **EcoFloc**, execute the `ecofloc` command as root with the following opt
 
 1. **Hardware** - The first parameter to specify is the hardware component to analyze. For example:  
 
-```sh
+```bash  
 ecofloc --cpu ...  
 ``` 
 
@@ -157,34 +160,34 @@ Then, specify the measuring interval and total analysis time:
 
 
 
+### Execution Commands  
 
-### Outputs
+Run **EcoFloc** using the following format:  
 
-After executing `ecofloc`, the following output will be displayed: 
-
-- **Average Power (in Watts):** The mean power consumption over the total analysis time.
-- **Energy Consumption (in Joules):** Total energy used during the total analysis time.
-</p>
-
-
-
-
-
+```bash  
+ecofloc --cpu -p or -n [PID or App Name] or -l or -L [App Name] -i [interval] -t [duration] -d -f [path]  
+ecofloc --sd -p or -n [PID or App Name] or -l or -L [App Name] -i [interval] -t [duration] -d -f [path]  
+ecofloc --nic -p or -n [PID or App Name] or -l or -L [App Name] -i [interval] -t [duration] -d -f [path]  
+ecofloc --ram -p or -n [PID or App Name] or -l or -L [App Name] -i [interval] -t [duration] -d -f [path]  
+ecofloc --gpu -p or -n [PID or App Name] or -l or -L [App Name] -i [interval] -t [duration] -d -f [path]  
+```  
 
 
 
+## Outputs  
+
+After the specified timeout or when you press `Ctrl+C`, **EcoFloc** will display:  
+
+- **Average Power (Watts):** Mean power consumption over the total analysis time.  
+- **Energy Consumption (Joules):** Total energy used during the analysis.  
 
 
-### Running FLOC:
 
-To use EcoFloc and specify which application to execute, run:
-```
-./floc --cpu -p or -n [PID or App Name] -i [interval] -t [duration] -d -f [path]
-./floc --sd -p or -n [PID or App Name] -i [interval] -t [duration] -d -f [path]
-./floc --nic -p or -n [PID or App Name] -i [interval] -t [duration] -d -f [path]
-./floc --ram -p or -n [PID or App Name] -t [duration] -d -f [path]
-./floc --gpu -p or -n [PID or App Name] -t [duration] -d -f [path]
-```
+
+
+
+
+
 
 
 ## Usage Examples
