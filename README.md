@@ -7,7 +7,7 @@
 ## Acknowledgments
 
 <p align="center">
-  <img src="https://github.com/hhumbertoAv/FLOC/assets/6061953/fcd7f192-e585-49f0-b766-137e5224ff72" width="45%"/>
+  <img src="https://github.com/user-attachments/assets/f8ab0bd5-a302-4d2b-8e7a-72e6f578bfa8" width="45%"/>
 </p>
 
 
