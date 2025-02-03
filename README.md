@@ -44,7 +44,7 @@ Like any software-based energy measurement tool, **EcoFloc** provides approximat
 
 ## Technical Specifications
 
-
+### Dependencies
 
 **EcoFloc** requires an Arch-based or Debian-based GNU/Linux distribution with Linux kernel 5.12 or higher.  
 
@@ -54,7 +54,6 @@ To collect hardware metrics, install the following packages:
 - **RAM:** `glibc` (for `iconv`) and `perf`  
 - **NIC:** `nethogs` **≥ 0.8.7**  
 
-### Installation  
 
 ```sh
 # Arch-based distributions
@@ -84,64 +83,8 @@ apt-get install msr-tools libc-bin linux-tools-common linux-tools-$(uname -r) ne
 
 
 
-### Dependencies
 
-**EcoFloc** requires an Arch-based or Debian-based GNU/Linux distribution with Linux kernel 5.12 or higher.  
 
-For each hardware module, certain packages must be installed:  
-
-1. **CPU:** Requires `rdmsr` to read model-specific registers (MSR) for energy measurement. Install it with:  
-
-   - **Arch-based distributions:**  
-     ```sh
-     pacman -S msr-tools
-     ```  
-
-   - **Debian-based distributions:**  
-     ```sh
-     apt-get install msr-tools
-     ```  
-
-2. **RAM:** Requires `iconv` and `perf` for memory performance metrics.  
-
-   - **Arch-based distributions:**  
-     - `iconv` is included with `glibc`, ensure it's up to date:  
-       ```sh
-       pacman -Syu glibc
-       ```  
-     - Install `perf`:  
-       ```sh
-       pacman -S linux-tools
-       ```  
-       *(Use `linux-zen-tools` instead if running the Zen kernel; adjust based on your kernel version.)*  
-
-   - **Debian-based distributions:**  
-     - `iconv` comes with `libc-bin`, no separate installation needed.  
-     - Install `perf`:  
-       ```sh
-       apt-get update
-       apt-get install linux-tools-common linux-tools-$(uname -r)
-       ```  
-
-3. **NIC:** Requires `nethogs` **≥ 0.8.7** to get per-PID network transfer rate.  
-
-   - **Arch-based distributions:**  
-     - Install `nethogs`:  
-       ```sh
-       sudo pacman -S nethogs
-       ```  
-
-   - **Debian-based distributions:**  
-     - Ensure your package list is up to date:  
-       ```sh
-       apt-get update
-       ```  
-     - Install `nethogs` (requires version **≥ 0.8.7**; check your repository or install from source if needed):  
-       ```sh
-       apt-get install nethogs
-       ```  
-     - If the required version is unavailable, visit:  
-       [https://launchpad.net/ubuntu/kinetic/arm64/nethogs/0.8.7-1](https://launchpad.net/ubuntu/kinetic/arm64/nethogs/0.8.7-1)  
 
 
 
