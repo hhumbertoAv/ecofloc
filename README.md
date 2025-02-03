@@ -85,6 +85,26 @@ For each hardware module, certain packages must be installed:
        apt-get install linux-tools-common linux-tools-$(uname -r)
        ```  
 
+3. **NIC:** Requires `nethogs` **≥ 0.8.7** to get per-PID network transfer rate.  
+
+   - **Arch-based distributions:**  
+     - Install `nethogs`:  
+       ```sh
+       sudo pacman -S nethogs
+       ```  
+
+   - **Debian-based distributions:**  
+     - Ensure your package list is up to date:  
+       ```sh
+       apt-get update
+       ```  
+     - Install `nethogs` (requires version **≥ 0.8.7**; check your repository or install from source if needed):  
+       ```sh
+       apt-get install nethogs
+       ```  
+     - If the required version is unavailable, visit:  
+       [https://launchpad.net/ubuntu/kinetic/arm64/nethogs/0.8.7-1](https://launchpad.net/ubuntu/kinetic/arm64/nethogs/0.8.7-1)  
+
 
 
 
