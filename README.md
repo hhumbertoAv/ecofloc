@@ -2,6 +2,8 @@
 
 
 
+
+
 ## Acknowledgments
 
 <p align="center">
@@ -54,7 +56,7 @@ Like any software-based energy measurement tool, **EcoFloc** provides approximat
 To collect hardware metrics, install the following packages:  
 
 - **CPU:** `msr-tools`  
-- **GPU:** `nvidia-smi` (yes, this version only supports NVIDIA GPUs)  
+- **GPU:** `nvidia-smi` (yes, this version only supports NVIDIA GPUs :-) )  
 - **RAM:** `glibc` (for `iconv`) and `perf`  
 - **NIC:** `nethogs` **≥ 0.8.7**  
 
@@ -71,8 +73,10 @@ apt-get install msr-tools libc-bin linux-tools-common linux-tools-$(uname -r) ne
 ```
 
 
+### Configuration  
 
 
+**EcoFloc** requires the power profile of each hardware component and some custom parameters, like the network interface to monitor for NIC analysis. It attempts to detect these values automatically, but you should review and update the *_settings.conf* file in each hardware folder. Required values can usually be found in the hardware datasheets available on the manufacturer’s website.  
 
 
 
