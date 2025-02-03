@@ -138,7 +138,7 @@ ecofloc --cpu ...
 
 ### **What to analyze**  
 
-**EcoFloc** can analyze an existing process, an active application, launch an application for monitoring, or track its boot process.  
+**EcoFloc** can analyze an existing process or application, or launch an application to monitor its execution, including its boot process.  
 
 2. **Process ID (PID) (`-p`)** – Analyze an already running process by specifying its PID.  
 3. **Application Name (`-n`)** – Monitor all PIDs associated with an existing application.  
