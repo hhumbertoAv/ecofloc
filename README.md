@@ -91,6 +91,8 @@ To install **EcoFloc**, run the following command as root:
 /bin/bash ecofloc_installer.sh  # Requires Python 3  
 ```
 
+At the end of the installation, a summary will display any potential issues. If you believe these issues are not valid and still want to test **EcoFloc**, proceed with the manual compilation steps below.  
+
 **Manual Compilation and Installation** 
 
 1. Navigate to the project root  
@@ -119,6 +121,7 @@ make uninstall
 ```
 
 
+## Running EcoFloc:
 
 
 
@@ -135,11 +138,10 @@ make uninstall
 
 
 
-
-### General Inputs
-<p align="justify">
 
 To use EcoFloc, execute the `ecofloc` command as root with the following options.
+
+
 
 1. **Process ID (PID) (`-p`):** The process identifier to analyze.
 2. **Application Name (`-n`):** The name of the application to measure (comprises all associated PIDs).
@@ -151,7 +153,6 @@ To use EcoFloc, execute the `ecofloc` command as root with the following options
 </p>
 
 ### Outputs
-<p align="justify">
 
 After executing `ecofloc`, the following output will be displayed: 
 
@@ -160,28 +161,13 @@ After executing `ecofloc`, the following output will be displayed:
 </p>
 
 
-## Compilation and Execution
 
-### Automated Installation
 
-To install EcoFloc, run the following command in your terminal as root:
-```bash
-/bin/bash ecofloc_installer.sh
-```
-This script requires Python3 to be installed on your system. It installs both the EcoFloc console application and a user interface that can be executed with the `ecoflocUI` command.
 
-### Manual Compilation and Installation
 
-To compile and install the EcoFloc project on your system, follow these steps:
 
-1. **Open your terminal.**
-2. **Navigate to the root directory of the FLOC project:**
-    - Use the `cd` command to change to the project directory.
-3. **Compile the project and manage installations:**
-    - Execute `make clean` to delete all executable files from the local folder.
-    - Execute `make` to compile the project and install FLOC, making it ready for use.
-    - Use `make uninstall` to remove FLOC from your system.
-    - Use `make install` to copy FLOC onto your system, allowing it to be used as a common GNU/Linux command.
+
+
 
 ### Running FLOC:
 
