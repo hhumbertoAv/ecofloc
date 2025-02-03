@@ -93,18 +93,29 @@ To install **EcoFloc**, run the following command as root:
 **Manual Compilation and Installation** 
 
 1. Navigate to the project root  
+
+```sh
 cd /path/to/ecofloc  
+```
 
 2. Clean previous builds  
+
+```sh
 make clean  
+```
 
 3. Compile and install  
+
+```sh
 make  
 make install  
+```
 
 4. Uninstall if needed  
-make uninstall  
 
+```sh
+make uninstall  
+```
 
 
 
