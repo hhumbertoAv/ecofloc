@@ -190,50 +190,53 @@ After the specified timeout or when you press `Ctrl+C`, **EcoFloc** will display
 
 
 
-## Usage Examples
+## Usage Examples  
 
-### Example 1: Analyze a Specific Process
+### Example 1: Analyze a Specific Process  
 
-To analyze the process with PID 20300 for 10 seconds at an interval of 1000 milliseconds for the CPU, use the following command:
+To check the CPU energy usage of a process with PID **20300**, sampling every **1000ms** for **10 seconds**, run:  
 
-```bash
-ecofloc --cpu -p 20300 -i 1000 -t 10 -f /home/user/
-```
+```bash  
+ecofloc --cpu -p 20300 -i 1000 -t 10 -f /home/user/  
+```  
 
-This command will output the results in the console in the following format:
-
-```console
-*****************************
-/ECOFLOC_RAM_PID_20300
-*****************************
-Average Power (CPU): 0.47 Watts
-Total CPU Energy (CPU): 4.72 Joules
-*****************************
-```
-
-Using the `-f` flag, EcoFloc generates a `.csv` file with a name that includes the component and software being analyzed (e.g., `/ECOFLOC_RAM_PID_20300.csv`). The file is stored in the specified path (e.g., `/home/user/`). If you use `default` with the `-f` flag (`ecofloc ... -f default`), EcoFloc will save the file in the path defined in the `features.conf` file located in the project folder. Each row in the `.csv` file includes the following values: PID, average power during the interval (Watts), and energy consumed in the interval (Joules).
-
-
-### Example 2: Analyze the Chrome Application
-
-To analyze the Chrome application (all its PIDs) at an interval of 1000 milliseconds indefinitely (`t` is a negative number) until the user presses Ctrl+C for the GPU, use the following command:
-
-```bash
-./ecofloc --gpu -n chrome -i 1000 -t -1 -d
-```
-
-Note that the `-d` option makes EcoFloc continue running even if `chrome` is closed. When this happens, EcoFloc will wait until Chrome is reopened.
-
-This command will output the results in the console in the following format:
+You'll see something like this:  
 
 ```console
-*****************************
-/ECOFLOC_SD_COMM_chrome
-*****************************
-Average Power (GPU): 1.98 Watts
-Total GPU Energy (GPU): 39.6 Joules
-*****************************
-```
+/*****************************  
+/ECOFLOC_RAM_PID_20300  
+*****************************/  
+Average Power (CPU): 0.47 Watts  
+Total CPU Energy (CPU): 4.72 Joules  
+*****************************  
+```  
+
+With `-f`, **EcoFloc** saves a `.csv` file in the specified path (e.g., `/home/user/`). The filename includes the component and process (e.g., `/ECOFLOC_RAM_PID_20300.csv`).  
+
+If you use `default` (`-f default`), the file goes to the path set in `features.conf` inside the project folder.  
+
+Each row in the `.csv` includes: **PID, average power (Watts), and energy consumed (Joules)**.  
+
+### Example 2: Analyze the Chrome Application  
+
+To monitor **Chrome's GPU usage**, tracking all its PIDs every **1000ms**, running **until you stop it** (`-t -1`), run:  
+
+---  
+ecofloc --gpu -n chrome -i 1000 -t -1 -d  
+```  
+
+The `-d` flag lets **EcoFloc** keep running even if **Chrome** closes and reopens.  
+
+You'll see something like this:  
+
+```bash 
+/*****************************  
+/ECOFLOC_SD_COMM_chrome  
+*****************************/  
+Average Power (GPU): 1.98 Watts  
+Total GPU Energy (GPU): 39.6 Joules  
+*****************************  
+```  
 
 
 
