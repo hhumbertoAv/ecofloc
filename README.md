@@ -121,36 +121,42 @@ make uninstall
 ```
 
 
-## Running EcoFloc:
+## Running EcoFloc  
+
+To use **EcoFloc**, execute the `ecofloc` command as root with the following options:  
+
+### **Which component to analyze**  
+
+1. **Hardware** - The first parameter to specify is the hardware component to analyze. For example:  
+
+```sh
+ecofloc --cpu ...  
+``` 
+
+### **What to analyze**  
+
+**EcoFloc** can analyze an existing process, an active application, launch an application for monitoring, or track its boot process.  
+
+2. **Process ID (PID) (`-p`)** – Analyze an already running process by specifying its PID.  
+3. **Application Name (`-n`)** – Monitor all PIDs associated with an existing application.  
+4. **Launch Application (`-l`)** – Start an application and analyze only its main PID.  
+5. **Launch Application (`-L`)** – Start an application and monitor all PIDs associated with its name. *(If an instance is already running, it will be included in the analysis.)*  
+
+
+### **Time parameters**
+
+Then, specify the measuring interval and total analysis time:  
+
+6. **Total Analysis Time (`-t`)** – Defines the measurement duration. A negative value enables continuous analysis, which can be stopped with `Ctrl+C` to display results.  
+7. **Measurement Interval (`-i`)** – Sets how often **EcoFloc** collects load and power data. *Smaller values may increase CPU usage*.  
+
+### **Extra Parameters**  
+
+8. **Dynamic Mode (`-d`)** – Allows **EcoFloc** to track applications that may be closed and reopened during analysis.  
+6. **Export Mode (`-f`)** – Saves measurement results to a CSV file at the specified path. If set to **default**, **EcoFloc** will use the path defined in `settings.conf` inside each component folder. The file includes, for each interval: measurement time, PID, average power, and energy consumed.  
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-To use EcoFloc, execute the `ecofloc` command as root with the following options.
-
-
-
-1. **Process ID (PID) (`-p`):** The process identifier to analyze.
-2. **Application Name (`-n`):** The name of the application to measure (comprises all associated PIDs).
-3. **Total Analysis Time (`-t`):** Specifies the measurement duration. Entering a negative value allows for ongoing analysis, which can be terminated and results displayed by pressing `Ctrl+C`.
-4. **Measurement Interval (`-i`):** Determines the interval at which EcoFloc takes load and power measurements. Please consider that small interval values can lead to CPU overload.
-5. **Dynamic Mode (`-d`):** Enables EcoFloc to evaluate applications that may be closed and reopened during the analysis.
-6. **Export Mode (`-f`):** Exports the measurement results to a CSV file at the path specified in the `settings.conf` file. The file will include, for each measured interval: the measurement time, the concerned PID, the average power, and the energy consumed.
-
-</p>
 
 ### Outputs
 
