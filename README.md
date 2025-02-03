@@ -76,7 +76,40 @@ apt-get install msr-tools libc-bin linux-tools-common linux-tools-$(uname -r) ne
 ### Configuration  
 
 
-**EcoFloc** requires the power profile of each hardware component and some custom parameters, like the network interface to monitor for NIC analysis. It attempts to detect these values automatically, but you should review and update the *_settings.conf* file in each hardware folder. Required values can usually be found in the hardware datasheets available on the manufacturer’s website.  
+**EcoFloc** needs the power profile of each hardware component, along with some custom information, such as the network interface to monitor for NIC analysis. While **EcoFloc** attempts to detect these values automatically, please update the *_settings.conf* file in each hardware folder. You can find the required values in the hardware datasheets, usually available on the manufacturer’s website.  
+
+
+
+### Installation
+
+**Automated Installation**  
+
+To install **EcoFloc**, run the following command as root:  
+
+```sh
+/bin/bash ecofloc_installer.sh  # Requires Python 3  
+```
+
+**Manual Compilation and Installation** 
+
+1. Navigate to the project root  
+cd /path/to/ecofloc  
+
+2. Clean previous builds  
+make clean  
+
+3. Compile and install  
+make  
+make install  
+
+4. Uninstall if needed  
+make uninstall  
+
+
+
+
+
+
 
 
 
