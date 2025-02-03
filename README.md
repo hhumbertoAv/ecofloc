@@ -12,10 +12,6 @@
 
 
 
-
-
-
-
 ## Description
 
 **EcoFloc** is a versatile tool that measures the energy consumption of processes based on the load they generate on **CPU**, **GPU**, **RAM**, **storage devices (SD)**, and **network interface controllers (NIC)**. It supports independent per-component measurement, interval-based sampling, and long-term monitoring, persisting data even if applications restart. **EcoFloc** can analyze existing applications or launch new ones from the boot process to track their energy usage from the start.  
@@ -50,7 +46,6 @@ Like any software-based energy measurement tool, **EcoFloc** provides approximat
 
 
 
-
 ### Dependencies
 
 **EcoFloc** requires an Arch-based or Debian-based GNU/Linux distribution with Linux kernel 5.12 or higher.  
@@ -69,9 +64,26 @@ For each hardware module, certain packages must be installed:
      apt-get install msr-tools
      ```  
 
+2. **RAM:** Requires `iconv` and `perf` for memory performance metrics.  
 
+   - **Arch-based distributions:**  
+     - `iconv` is included with `glibc`, ensure it's up to date:  
+       ```sh
+       pacman -Syu glibc
+       ```  
+     - Install `perf`:  
+       ```sh
+       pacman -S linux-tools
+       ```  
+       *(Use `linux-zen-tools` instead if running the Zen kernel; adjust based on your kernel version.)*  
 
-
+   - **Debian-based distributions:**  
+     - `iconv` comes with `libc-bin`, no separate installation needed.  
+     - Install `perf`:  
+       ```sh
+       apt-get update
+       apt-get install linux-tools-common linux-tools-$(uname -r)
+       ```  
 
 
 
