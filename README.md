@@ -7,7 +7,7 @@
 ## Acknowledgments
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/f8ab0bd5-a302-4d2b-8e7a-72e6f578bfa8" width="45%"/>
+  <img src="https://github.com/user-attachments/assets/ce919194-b05e-48d3-a75c-90806b022335" width="45%"/>
 </p>
 
 
