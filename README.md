@@ -1,5 +1,7 @@
 # <img src="https://github.com/hhumbertoAv/FLOC/assets/6061953/39adf1cb-08eb-4d51-a1fe-5fd26966350e" width="40"/> EcoFloc: Energy Measuring System Tool for Linux
 
+
+
 ## Acknowledgments
 
 <p align="center">
@@ -8,6 +10,10 @@
 
 
 **EcoFloc** was developed by the R&D laboratory of **Technopôle Domolandes**[^1], with support from **Université de Pau et des Pays de l'Adour** and **Université de Toulouse**. These institutions play a key role in advancing research and innovation, contributing to technological progress and regional development in France.  
+
+
+
+
 
 
 
@@ -39,39 +45,30 @@ Like any software-based energy measurement tool, **EcoFloc** provides approximat
 
 
 
-
-
-
 ## Technical Specifications
 
-### Dependencies
+### Dependencies  
 
 **EcoFloc** requires an Arch-based or Debian-based GNU/Linux distribution with Linux kernel 5.12 or higher.  
 
 To collect hardware metrics, install the following packages:  
 
 - **CPU:** `msr-tools`  
+- **GPU:** `nvidia-smi` (yes, this version only supports NVIDIA GPUs)  
 - **RAM:** `glibc` (for `iconv`) and `perf`  
 - **NIC:** `nethogs` **≥ 0.8.7**  
 
-
 ```sh
 # Arch-based distributions
-pacman -S msr-tools glibc linux-tools nethogs  # Use 'linux-zen-tools' instead if running the Zen kernel
+pacman -S msr-tools glibc linux-tools nethogs nvidia-smi  # Use 'linux-zen-tools' instead if running the Zen kernel  
 
 # Debian-based distributions
 apt-get update
-apt-get install msr-tools libc-bin linux-tools-common linux-tools-$(uname -r) nethogs
+apt-get install msr-tools libc-bin linux-tools-common linux-tools-$(uname -r) nethogs nvidia-smi  
 
 # If nethogs ≥ 0.8.7 is unavailable, check:
 # https://launchpad.net/ubuntu/kinetic/arm64/nethogs/0.8.7-1
-
 ```
-
-
-
-
-
 
 
 
