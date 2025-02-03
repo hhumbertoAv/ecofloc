@@ -7,13 +7,28 @@
 </p>
 
 
-**EcoFloc** has been made possible thanks to **Technopôle Domolandes**[^1], an organization deeply committed to innovation and the development of the Landes region in France and beyond, as well as the **Université de Pau et des Pays de l'Adour** and **Université de Toulouse**. These institutions are engaged in advancing research and development in France, contributing significantly to technological progress and regional growth. Their continuous efforts have been instrumental in bringing this project to life.
+**EcoFloc** was developed by the R&D laboratory of **Technopôle Domolandes**[^1], with support from **Université de Pau et des Pays de l'Adour** and **Université de Toulouse**. These institutions play a key role in advancing research and innovation, contributing to technological progress and regional development in France.  
+
 
 ## Description
 
-**EcoFloc** is a comprehensive and versatile tool developed by the R&D laboratory of Technopôle Domolandes[^1], supported by Université de Pau et des Pays de l'Adour and Université de Toulouse.
+**EcoFloc** is a versatile tool for measuring energy consumption in GNU/Linux environments, tracking usage across **CPU**, **GPU**, **RAM**, **storage devices (SD)**, and **network interface controllers (NIC)**. It enables independent energy measurement per component, interval-based sampling with configurable timeouts, and long-term monitoring that persists data even across application restarts. **EcoFloc** works with both existing applications and those launched through the tool, providing detailed energy profiles to analyze consumption patterns over time.  
 
-**EcoFloc** measures the energy consumption of applications in GNU/Linux environments across several hardware components. In this initial release, it enables independent energy measurement for the **CPU**, **GPU**, **RAM**, **storage devices (SD)**, and **network interface controllers (NIC)**. The tool measures energy at predefined intervals during a specified timeout, allowing users to create detailed energy profiles based on hardware components and behavioral patterns over time. It also features long-term monitoring capabilities, tracking energy usage over extended periods, even if applications are closed and reopened.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Power calculation
 
