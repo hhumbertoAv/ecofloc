@@ -43,13 +43,7 @@ Like any software-based energy measurement tool, **EcoFloc** provides approximat
 
 
 
-
-
-
-
-## Technical Specifications
-
-### Dependencies  
+## Dependencies  
 
 **EcoFloc** requires an Arch-based or Debian-based GNU/Linux distribution with Linux kernel 5.12 or higher.  
 
@@ -73,14 +67,21 @@ apt-get install msr-tools libc-bin linux-tools-common linux-tools-$(uname -r) ne
 ```
 
 
-### Configuration  
+
+
+
+
+## Configuration  
 
 
 **EcoFloc** needs the power profile of each hardware component, along with some custom information, such as the network interface to monitor for NIC analysis. While **EcoFloc** attempts to detect these values automatically, please update the *_settings.conf* file in each hardware folder. You can find the required values in the hardware datasheets, usually available on the manufacturer’s website.  
 
 
 
-### Installation
+
+
+
+## Installation
 
 **Automated Installation**  
 
