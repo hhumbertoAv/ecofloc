@@ -46,6 +46,44 @@ Like any software-based energy measurement tool, **EcoFloc** provides approximat
 
 
 
+**EcoFloc** requires an Arch-based or Debian-based GNU/Linux distribution with Linux kernel 5.12 or higher.  
+
+To collect hardware metrics, install the following packages:  
+
+- **CPU:** `msr-tools`  
+- **RAM:** `glibc` (for `iconv`) and `perf`  
+- **NIC:** `nethogs` **≥ 0.8.7**  
+
+### Installation  
+
+```sh
+# Arch-based distributions
+pacman -S msr-tools glibc linux-tools nethogs  # Use 'linux-zen-tools' instead if running the Zen kernel
+
+# Debian-based distributions
+apt-get update
+apt-get install msr-tools libc-bin linux-tools-common linux-tools-$(uname -r) nethogs
+
+# If nethogs ≥ 0.8.7 is unavailable, check:
+# https://launchpad.net/ubuntu/kinetic/arm64/nethogs/0.8.7-1
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Dependencies
 
 **EcoFloc** requires an Arch-based or Debian-based GNU/Linux distribution with Linux kernel 5.12 or higher.  
